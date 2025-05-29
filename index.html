@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEO Injection Tool</title>
+    <!-- Favicon Links -->
+    <link rel="icon" type="image/x-icon" href="icons/logo.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/logo-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/logo-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="icons/logo-48x48.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="icons/logo-64x64.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="icons/logo-96x96.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="icons/logo-128x128.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="icons/logo-256x256.png">
+    <meta name="theme-color" content="#667eea">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
         <header class="header">
@@ -68,7 +80,8 @@
 
                     <div class="form-group">
                         <label for="ogDescription">OG Description</label>
-                        <textarea id="ogDescription" rows="2" placeholder="Will use Meta Description if empty"></textarea>
+                        <textarea id="ogDescription" rows="2"
+                            placeholder="Will use Meta Description if empty"></textarea>
                     </div>
 
                     <div class="form-group">
@@ -156,15 +169,15 @@
                 <div class="upload-area" id="uploadArea">
                     <div class="upload-content">
                         <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                            <polyline points="7,10 12,15 17,10"/>
-                            <line x1="12" y1="15" x2="12" y2="3"/>
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7,10 12,15 17,10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
                         </svg>
                         <p>Drop your HTML file here or click to browse</p>
                         <input type="file" id="fileInput" accept=".html,.htm" hidden>
                     </div>
                 </div>
-                
+
                 <div class="file-info" id="fileInfo" style="display: none;">
                     <p><strong>File:</strong> <span id="fileName"></span></p>
                     <p><strong>Size:</strong> <span id="fileSize"></span></p>
@@ -184,7 +197,8 @@
                         <div class="search-result">
                             <div class="search-title" id="previewTitle">Your Page Title</div>
                             <div class="search-url" id="previewUrl">https://example.com</div>
-                            <div class="search-description" id="previewDescription">Your meta description will appear here...</div>
+                            <div class="search-description" id="previewDescription">Your meta description will appear
+                                here...</div>
                         </div>
                     </div>
 
@@ -209,4 +223,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
