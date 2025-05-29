@@ -270,9 +270,17 @@ function updatePreview() {
     elements.previewDescription.textContent = data.metaDescription || 'Your meta description will appear here...';
     
     if (data.canonicalUrl) {
-        elements.previewUrl.textContent = data.canonicalUrl;
-        const domain = new URL(data.canonicalUrl).hostname.toUpperCase();
-        elements.previewDomain.textContent = domain;
+        try {
+            elements.previewUrl.textContent = data.canonicalUrl;
+            const domain = new URL(data.canonicalUrl).hostname.toUpperCase();
+            elements.previewDomain.textContent = domain;
+        } catch (e) {
+            elements.previewUrl.textContent = 'https://example.com';
+            elements.previewDomain.textContent = 'EXAMPLE.COM';
+        }
+    } else {
+        elements.previewUrl.textContent = 'https://example.com';
+        elements.previewDomain.textContent = 'EXAMPLE.COM';
     }
     
     // Facebook preview
@@ -291,7 +299,7 @@ function updatePreview() {
     elements.previewSection.style.display = 'block';
 }
 
-// File processing
+// File processing - FIXED VERSION
 async function processFile() {
     if (!uploadedFile) {
         showStatus('Please select an HTML file first.', 'error');
@@ -311,7 +319,8 @@ async function processFile() {
     elements.processBtn.textContent = 'Processing...';
     
     try {
-        const fileContent = await readFileContent(uploadedFile);
+        // Use FileReader API instead of window.fs.readFile
+        const fileContent = await readFileAsText(uploadedFile);
         const enhancedHtml = injectSEOMetadata(fileContent, formData);
         
         // Download the enhanced file
@@ -329,12 +338,19 @@ async function processFile() {
     }
 }
 
-// File reading
-function readFileContent(file) {
+// FIXED: File reading using standard FileReader API
+function readFileAsText(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
-        reader.onload = e => resolve(e.target.result);
-        reader.onerror = () => reject(new Error('Failed to read file'));
+        
+        reader.onload = function(event) {
+            resolve(event.target.result);
+        };
+        
+        reader.onerror = function() {
+            reject(new Error('Failed to read file'));
+        };
+        
         reader.readAsText(file);
     });
 }
